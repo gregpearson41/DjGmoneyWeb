@@ -14,7 +14,7 @@ const services = [
     icon: Briefcase,
     title: 'Corporate Events',
     description: 'Professional entertainment for conferences, holiday parties, product launches, and team-building events that leave a lasting impression.',
-    features: ['Professional setup', 'Background music', 'Interactive entertainment', 'Brand integration']
+    features: ['Professional setup', 'Background music', 'Interactive entertainment']
   },
   {
     icon: Home,
@@ -25,7 +25,7 @@ const services = [
   {
     icon: Flame,
     title: 'BBQs & Celebrations',
-    description: 'Add flavor to your BBQs and celebrations with the perfect soundtrack that keeps guests entertained and the energy high.',
+    description: 'Break out your fans and grills. So add some flavor to your cookout and outdoor celebrations with the perfect soundtrack that keeps your guests entertained all day.',
     features: ['Casual atmosphere', 'Diverse music selection', 'Interactive DJ sets', 'Guest requests welcome']
   }
 ];

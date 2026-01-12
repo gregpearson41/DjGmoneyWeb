@@ -1,14 +1,15 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
-import { Facebook, Instagram, Youtube, Music } from 'lucide-react'; 
+import { Facebook, Instagram, Youtube, Music } from 'lucide-react'; // Removed Twitter
 import { useToast } from '@/components/ui/use-toast';
 
 const socialLinks = [
   { icon: Facebook, name: 'Facebook', color: 'hover:bg-blue-600' },
   { icon: Instagram, name: 'Instagram', color: 'hover:bg-pink-600' },
-  { icon: Youtube, name: 'YouTube', color: 'hover:bg-red-600' }
+  // Removed Twitter link
+  { icon: Youtube, name: 'YouTube', color: 'hover:bg-red-600' },
+  { icon: Music, name: 'Spotify', color: 'hover:bg-green-600' }
 ];
 
 const Social = () => {
@@ -16,20 +17,10 @@ const Social = () => {
   const { toast } = useToast();
 
   const handleSocialClick = (platform) => {
-    const links = {
-    Instagram: 'https://www.instagram.com/djgmoney',
-    Facebook: 'https://www.facebook.com/',
-    Youtube: 'https://www.youtube.com/@djgmoney',
-  };
-
-
-  const url = links[platform];
-
-  if (url) {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  } else {
-    console.warn(`No link defined for platform: ${platform}`);
-  }
+    toast({
+      title: `🚧 ${platform} Coming Soon!`,
+      description: `Follow DJ Gmoney on ${platform} for the latest updates and exclusive content!`,
+    });
   };
 
   return (
@@ -76,7 +67,7 @@ const Social = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-12 text-gray-400"
         >
-          Let's connect so that you don't miss a thing!
+          Join thousands of fans and never miss an update!
         </motion.p>
       </div>
     </section>
