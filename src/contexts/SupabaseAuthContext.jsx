@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useEffect, useState, useCallback, useMemo } from 'react';
-
-import { supabase } from '@/lib/customSupabaseClient';
+import React, { createContext, useContext, useState, useCallback, useMemo } from 'react';
 import { useToast } from '@/components/ui/use-toast';
+
+// This context has been stripped of Supabase integration as requested.
+// It remains as a shell to prevent import errors in the rest of the application.
 
 const AuthContext = createContext(undefined);
 
@@ -10,79 +11,23 @@ export const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState(null);
   const [session, setSession] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const handleSession = useCallback(async (session) => {
-    setSession(session);
-    setUser(session?.user ?? null);
-    setLoading(false);
+  // Dummy implementations
+  const signUp = useCallback(async (email, password, options) => {
+    console.log("Supabase Auth removed: signUp called");
+    return { error: { message: "Authentication is currently disabled." } };
   }, []);
 
-  useEffect(() => {
-    const getSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      handleSession(session);
-    };
-
-    getSession();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        handleSession(session);
-      }
-    );
-
-    return () => subscription.unsubscribe();
-  }, [handleSession]);
-
-  const signUp = useCallback(async (email, password, options) => {
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options,
-    });
-
-    if (error) {
-      toast({
-        variant: "destructive",
-        title: "Sign up Failed",
-        description: error.message || "Something went wrong",
-      });
-    }
-
-    return { error };
-  }, [toast]);
-
   const signIn = useCallback(async (email, password) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      toast({
-        variant: "destructive",
-        title: "Sign in Failed",
-        description: error.message || "Something went wrong",
-      });
-    }
-
-    return { error };
-  }, [toast]);
+    console.log("Supabase Auth removed: signIn called");
+    return { error: { message: "Authentication is currently disabled." } };
+  }, []);
 
   const signOut = useCallback(async () => {
-    const { error } = await supabase.auth.signOut();
-
-    if (error) {
-      toast({
-        variant: "destructive",
-        title: "Sign out Failed",
-        description: error.message || "Something went wrong",
-      });
-    }
-
-    return { error };
-  }, [toast]);
+    console.log("Supabase Auth removed: signOut called");
+    return { error: null };
+  }, []);
 
   const value = useMemo(() => ({
     user,

@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
 import { Music2, Headphones, Award } from 'lucide-react';
+import mainPic from '@/assets/main/mainPic.png';
+
 const About = () => {
   const [ref, isInView] = useInView({
     threshold: 0.2
@@ -32,7 +34,7 @@ const About = () => {
           duration: 0.6,
           delay: 0.2
         }}>
-            <img className="rounded-lg shadow-2xl w-full h-[500px] object-cover" alt="DJ Gmoney at the DJ booth" src="https://images.unsplash.com/photo-1589448369336-7e68b874f245" />
+            <img className="shadow-2xl w-full h-[640px] w-[400px] object-cover" style={{ background: "#000" }} alt="DJ Gmoney at the DJ booth" src={mainPic} />
           </motion.div>
 
           <motion.div initial={{
@@ -74,7 +76,7 @@ Numerous private and corporate events throughout the DC area</p>
               </div>
               <div className="text-center">
                 <Award className="w-12 h-12 mx-auto mb-3 text-yellow-500" />
-                <p className="text-2xl font-bold text-yellow-500">100%</p>
+                <p className="text-2xl font-bold text-yellow-500">99.999%</p>
                 <p className="text-gray-400 text-sm">Satisfaction Rate</p>
               </div>
             </div>

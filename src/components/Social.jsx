@@ -1,35 +1,29 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
-import { Facebook, Instagram, Youtube, Music } from 'lucide-react'; 
+import { Facebook, Instagram, Youtube, Music } from 'lucide-react'; // Removed Twitter
 import { useToast } from '@/components/ui/use-toast';
 
 const socialLinks = [
-  { icon: Facebook, name: 'Facebook', color: 'hover:bg-blue-600' },
-  { icon: Instagram, name: 'Instagram', color: 'hover:bg-pink-600' },
-  { icon: Youtube, name: 'YouTube', color: 'hover:bg-red-600' }
+  { icon: Facebook, name: 'Facebook', color: 'hover:bg-blue-600', link: 'https://www.instagram.com/gregp35' },
+  { icon: Instagram, name: 'Instagram', color: 'hover:bg-pink-600', link:'https://www.instagram.com/gregp35' },
+  // Removed Twitter link
+  { icon: Youtube, name: 'YouTube', color: 'hover:bg-red-600', link:'https://www.youtube.com/@djgmoneyDMV' },
 ];
 
 const Social = () => {
   const [ref, isInView] = useInView({ threshold: 0.2 });
   const { toast } = useToast();
 
-  const handleSocialClick = (platform) => {
-    const links = {
-    Instagram: 'https://www.instagram.com/djgmoney',
-    Facebook: 'https://www.facebook.com/',
-    Youtube: 'https://www.youtube.com/@djgmoney',
-  };
-
-
-  const url = links[platform];
-
-  if (url) {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  } else {
-    console.warn(`No link defined for platform: ${platform}`);
-  }
+  const handleSocialClick = (platform, link) => {
+    
+    toast({
+      title: `Thank you for checkout my ${platform} page!`,
+      description: `Follow DJ Gmoney on ${platform} for the latest updates and exclusive content!`,
+    });
+    setTimeout(() => {
+       window.open(link, "_blank", "noopener,noreferrer");
+  }, 2000);
   };
 
   return (
@@ -62,7 +56,7 @@ const Social = () => {
               transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
               whileHover={{ scale: 1.1, y: -5 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => handleSocialClick(social.name)}
+              onClick={() => handleSocialClick(social.name, social.link)}
               className={`p-6 bg-gray-800 rounded-full border-2 border-yellow-500/30 ${social.color} hover:border-yellow-500 transition-all duration-300 group`}
             >
               <social.icon className="w-8 h-8 text-yellow-500 group-hover:text-white transition-colors duration-300" />
@@ -76,7 +70,7 @@ const Social = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-12 text-gray-400"
         >
-          Let's connect so that you don't miss a thing!
+          Join thousands of fans and never miss an update!
         </motion.p>
       </div>
     </section>

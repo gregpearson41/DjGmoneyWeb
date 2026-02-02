@@ -1,15 +1,19 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
-import { Music, Youtube, ExternalLink, ZoomIn } from 'lucide-react';
+import { Music, Youtube, ExternalLink, ZoomIn, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
+import { Link } from 'react-router-dom';
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
+import albumCoverUrl from  "@/assets/albums/vibeAlbum.png";
+import youtubeCoverUrl from "@/assets/youTube/youTubeCover.png";
+
 
 const Media = () => {
   const [ref, isInView] = useInView({
@@ -31,8 +35,6 @@ const Media = () => {
     });
   };
   
-  const albumCoverUrl = "https://horizons-cdn.hostinger.com/e4056b58-6a66-4adc-9d39-d1b1f77001b8/ef92b2274f748f8fd610cd4d49b9b2eb.png";
-
   return (
     <section id="media" className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black" ref={ref}>
       <div className="max-w-6xl mx-auto">
@@ -64,13 +66,18 @@ const Media = () => {
             delay: 0.2
           }} className="bg-gradient-to-br from-yellow-500/10 to-yellow-600/5 rounded-lg p-8 border border-yellow-500/30 hover:border-yellow-500/60 transition-all duration-300 group">
             <div className="flex items-center gap-4 mb-6">
+              <Link to="/albums" className="group/link">
               <div className="p-4 bg-yellow-500/20 rounded-full group-hover:bg-yellow-500/30 transition-colors duration-300">
                 <Music className="w-8 h-8 text-yellow-500" />
               </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white">Latest Albums</h3>
-                <p className="text-gray-400">Stream my latest mixes</p>
-              </div>
+              </Link>
+              <Link to="/albums" className="group/link">
+                <h3 className="text-2xl font-bold text-white group-hover/link:text-yellow-500 transition-colors flex items-center gap-2">
+                  Latest Albums
+                  <ChevronRight className="w-5 h-5 opacity-0 -translate-x-2 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all duration-300" />
+                </h3>
+                <p className="text-gray-400 group-hover/link:text-gray-300 transition-colors">Cooking up a few mixes for your enjoyment</p>
+              </Link>
             </div>
             
             <Dialog>
@@ -98,11 +105,11 @@ const Media = () => {
             </Dialog>
 
             <p className="text-gray-400 text-sm mb-6 text-center">Vibes R&B Mixtape - Coming Soon</p>
-            <Button onClick={handleAlbumClick} className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold group-hover:scale-105 transition-transform duration-300">
+            {/* <Button onClick={handleAlbumClick} className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold group-hover:scale-105 transition-transform duration-300">
               <Music className="w-5 h-5 mr-2" />
-              Listen Now
+              Down Load MP3 album
               <ExternalLink className="w-4 h-4 ml-2" />
-            </Button>
+            </Button> */}
           </motion.div>
 
           <motion.div initial={{
@@ -116,20 +123,32 @@ const Media = () => {
             delay: 0.4
           }} className="bg-gradient-to-br from-red-500/10 to-red-600/5 rounded-lg p-8 border border-red-500/30 hover:border-red-500/60 transition-all duration-300 group">
             <div className="flex items-center gap-4 mb-6">
+            <a href='https://www.youtube.com/@djgmoneyDMV' target="_blank" rel="noopener noreferrer"> 
               <div className="p-4 bg-red-500/20 rounded-full group-hover:bg-red-500/30 transition-colors duration-300">
                 <Youtube className="w-8 h-8 text-red-500" />
               </div>
+                </a>
+                <a href='https://www.youtube.com/@djgmoneyDMV' target="_blank" rel="noopener noreferrer"> 
               <div>
-                <h3 className="text-2xl font-bold text-white">YouTube Channel</h3>
-                <p className="text-gray-400">Watch live performances</p>
+                <h3 className="text-2xl font-bold text-white">DjGmoneyDMV YouTube Channel</h3>
+                
+                <p className="text-gray-400"> </p>
               </div>
+              </a>
             </div>
-            <img className="rounded-lg mb-6 w-full h-64 object-cover shadow-xl" alt="DJ Gmoney performing live" src="https://images.unsplash.com/photo-1695771079402-dfac9a60203f" />
-            <Button onClick={handleYouTubeClick} className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold group-hover:scale-105 transition-transform duration-300">
+                <a href='https://www.youtube.com/@djgmoneyDMV' target="_blank" rel="noopener noreferrer">
+                  <img 
+                    src={youtubeCoverUrl} 
+                    alt="DJ Gmoney YouTube" 
+                    className="rounded-lg mb-6 w-full h-64 object-cover shadow-xl"
+                  />
+                </a>
+                
+                            {/* <Button onClick={handleYouTubeClick} className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold group-hover:scale-105 transition-transform duration-300">
               <Youtube className="w-5 h-5 mr-2" />
-              Visit Channel
+              Visit DjGmoney Channel
               <ExternalLink className="w-4 h-4 ml-2" />
-            </Button>
+            </Button> */}
           </motion.div>
         </div>
       </div>
